@@ -1,0 +1,17 @@
+Package: demotif
+Title: Demotif sampling is an approach to decompose hierarchical motifs
+Version: 0.1.0
+Authors@R: 
+    person("David", "Joy", , "xytang@link.cuhk.edu.hk", role = c("aut", "cre"))
+Description: This package provides tools for decomposing hierarchical motifs.
+License: GPL-3
+Imports: 
+    MCMCpack,
+    stringr,
+    MASS,
+    ggplot2,
+    ggseqlogo,
+    ggpubr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
