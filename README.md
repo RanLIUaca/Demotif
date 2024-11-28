@@ -126,7 +126,7 @@ Res = res_ana(motif_len_w, motif_len_g, 50)
 ```
 
 ## Reference
--   Ran, L. et al. (2024+), “De-motif Sampling: An Approach to Decompose Hierarchical Motifs with Applications in T Cell Recognition,” Working Paper.
+-   Xinyi, T. et al. (2024+), “De-motif Sampling: An Approach to Decompose Hierarchical Motifs with Applications in T Cell Recognition,” Working Paper.
 
 ## Contact
 Xinyi Tang: xytang@link.cuhk.edu.hk; Ran Liu: ranliu@bnu.edu.cn
