@@ -94,7 +94,7 @@ names(Data_row_list) = c("Data", "total_n", "dict", "len_dict", "Len_seq", "UW_l
 list2env(Data_row_list, envir = .GlobalEnv)
 
 ##### Obtain the all samples #####
-# Extract motif samples using the `de_motif` function
+# Generate samples using the `de_motif` function (store them in the './result/')
 # Parameters:
 # - Data: Processed data
 # - motif_len_w: Length of the first motif
@@ -103,14 +103,15 @@ list2env(Data_row_list, envir = .GlobalEnv)
 # - 10: the number of steps to skip between each execution of the MH algorithm for the second binding motif. 
 # - 20: the time step at which to stop the MH algorithm for the first and second binding motifs.
 # - 50: The number of sampling iterations to perform.
-Motifs = de_motif(Data,motif_len_w,motif_len_g,10,10,20,50)
+de_motif(Data,motif_len_w,motif_len_g,10,10,20,50)
 
 #### Present all results #####
-# Analyze the results using the `res_ana` function
+# Analyze the results in the './result/' using the `res_ana` function
 # Parameters:
 # - motif_len_w: Length of the first motif
 # - motif_len_g: Length of the second motif
-# - 50: the number of iterations 
+# - 50: the number of iterations
+# Return: 
 #  Res: A list containing:
 # - Samples for `theta_0` (background probabilities),
 # - Samples for `theta` (the first binding motif probabilities),
@@ -126,7 +127,7 @@ Res = res_ana(motif_len_w, motif_len_g, 50)
 ```
 
 ## Reference
--   Xinyi, T. et al. (2024+), “De-motif Sampling: An Approach to Decompose Hierarchical Motifs with Applications in T Cell Recognition,” Working Paper.
+-   Xinyi, T. et al. (2025+), “De-motif Sampling: An Approach to Decompose Hierarchical Motifs with Applications in T Cell Recognition,” Working Paper.
 
 ## Contact
 Xinyi Tang: xytang@link.cuhk.edu.hk; Ran Liu: ranliu@bnu.edu.cn
