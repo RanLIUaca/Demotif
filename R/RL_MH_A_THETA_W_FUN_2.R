@@ -16,7 +16,7 @@
 #' @return A numeric value representing the posterior probability.
 #' @export
 #' 
-pi_A_theta_fun = function(R,W,G_samp,A,B_samp,dict,theta_0_samp,theta,theta_til_samp,pri_alw){
+pi_A_theta_fun = function(R,W,G_samp,A,B_samp,dict,theta_0_samp,theta,theta_til_samp,pri_alw, pri_wp){
   res = logllk_fun(R,W,G_samp,A,B_samp,motif_len_w,motif_len_g,dict,theta_0_samp,theta,theta_til_samp)
   for(rep_j in 1:length(theta[1,])){
     res = res +log(ddirichlet(theta[,rep_j], rep(pri_alw,len_dict)))
@@ -170,17 +170,17 @@ A_theta_samp_fun = function(R,W_samp,G_samp,UW_loc,A_samp,B_samp,motif_len_w,mot
   }
   
   if(length(UW_loc)>0){
-  nume = (pi_A_theta_fun(R,W_samp_star,G_samp,A_samp_star,B_samp,dict,theta_0_samp,theta_samp_star,theta_til_samp,pri_alw)+
+  nume = (pi_A_theta_fun(R,W_samp_star,G_samp,A_samp_star,B_samp,dict,theta_0_samp,theta_samp_star,theta_til_samp,pri_alw,pri_wp)+
             prob_theta_fun(R,W_samp_star,G_samp,A_samp,B_samp,dict,theta_samp,pri_alw)+
             prob_w_fun(R,W_samp,G_samp,UW_loc,A_samp,B_samp,dict,theta_0_samp,theta_samp,theta_til_samp,pri_wp))
   
-  deno = (pi_A_theta_fun(R,W_samp,G_samp,A_samp,B_samp,dict,theta_0_samp,theta_samp,theta_til_samp,pri_alw)+
+  deno = (pi_A_theta_fun(R,W_samp,G_samp,A_samp,B_samp,dict,theta_0_samp,theta_samp,theta_til_samp,pri_alw,pri_wp)+
             prob_theta_fun(R,W_samp,G_samp,A_samp_star,B_samp,dict,theta_samp_star,pri_alw)+
             prob_w_fun(R,W_samp_star,G_samp,UW_loc,A_samp_star,B_samp,dict,theta_0_samp,theta_samp_star,theta_til_samp,pri_wp))
   }else{
-    nume = (pi_A_theta_fun(R,W_samp_star,G_samp,A_samp_star,B_samp,dict,theta_0_samp,theta_samp_star,theta_til_samp,pri_alw)+
+    nume = (pi_A_theta_fun(R,W_samp_star,G_samp,A_samp_star,B_samp,dict,theta_0_samp,theta_samp_star,theta_til_samp,pri_alw,pri_wp)+
               prob_theta_fun(R,W_samp_star,G_samp,A_samp,B_samp,dict,theta_samp,pri_alw))
-    deno = (pi_A_theta_fun(R,W_samp,G_samp,A_samp,B_samp,dict,theta_0_samp,theta_samp,theta_til_samp,pri_alw)+
+    deno = (pi_A_theta_fun(R,W_samp,G_samp,A_samp,B_samp,dict,theta_0_samp,theta_samp,theta_til_samp,pri_alw,pri_wp)+
               prob_theta_fun(R,W_samp,G_samp,A_samp_star,B_samp,dict,theta_samp_star,pri_alw))
             }
   acc_rate = min(1, exp(nume-deno))
