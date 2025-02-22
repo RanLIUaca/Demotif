@@ -107,7 +107,7 @@ res_ana = function(motif_len_w,motif_len_g,N){
   #########################
   ### parameters logo ####
   ##########################
-  est_theta_0 = Theta_0[[which.max(Logllk)]]
+  est_theta_0 = Theta_0[,which.max(Logllk)]
   est_theta = Theta[[which.max(Logllk)]]; est_theta = as.matrix(est_theta); row.names(est_theta) = dict
   plot_list[[2]] = ggseqlogo(est_theta) +
     theme(legend.position = "none", axis.text = element_text(size = 11),plot.title = element_text(size = 11))+
