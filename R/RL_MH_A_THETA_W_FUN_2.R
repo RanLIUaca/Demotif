@@ -149,12 +149,12 @@ prob_w_fun = function(R,W,G_samp,UW_loc,A,B_samp,dict,theta_0_samp,theta,theta_t
 #' @param theta_samp Probabilities for the first motif (sampled).
 #' @param theta_til_samp Probabilities for the second motif (sampled).
 #' @param pri_alw Prior Dirichlet parameter for `theta`.
-#' @param pri_Wp Prior probability for `W`.
+#' @param pri_wp Prior probability for `W`.
 #'
 #' @return A list containing updated values for `A`, `theta`, and `W`, along with the jump indicator.
 #' @export
 #' 
-A_theta_samp_fun = function(R,W_samp,G_samp,UW_loc,A_samp,B_samp,motif_len_w,motif_len_g,dict,theta_0_samp,theta_samp,theta_til_samp,pri_alw,pri_Wp){
+A_theta_samp_fun = function(R,W_samp,G_samp,UW_loc,A_samp,B_samp,motif_len_w,motif_len_g,dict,theta_0_samp,theta_samp,theta_til_samp,pri_alw,pri_wp){
   del = sample(c(1,-1),size = 1,replace=T,prob = c(1/2,1/2))
   A_samp_star = A_samp + del
   if(del==-1) A_samp_star[which(A_samp==1)] = A_samp[which(A_samp==1)]
