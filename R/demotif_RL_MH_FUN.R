@@ -125,7 +125,7 @@ de_motif = function(Data,motif_len_w,motif_len_g,mh_step_w,mh_step_g,stop_jump_s
       # temp_B_samp = B_samp
       
       if(((rep_N%%mh_step_w)==0)&(rep_N<stop_jump_step)){
-        A_theta_samp = A_theta_samp_fun(R,W_samp,G_samp,UW_loc,A_samp,B_samp,motif_len_w,motif_len_g,dict,theta_0_samp,theta_samp,theta_til_samp,pri_alw,Post_alpha_w)
+        A_theta_samp = A_theta_samp_fun(R,W_samp,G_samp,UW_loc,A_samp,B_samp,motif_len_w,motif_len_g,dict,theta_0_samp,theta_samp,theta_til_samp,pri_alw,pri_wp)
         A_samp = A_theta_samp[[1]]
         theta_samp = A_theta_samp[[2]]
         if(length(UW_loc)>0){
