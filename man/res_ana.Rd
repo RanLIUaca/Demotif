@@ -4,12 +4,14 @@
 \alias{res_ana}
 \title{res_ana}
 \usage{
-res_ana(motif_len_w, motif_len_g, N)
+res_ana(motif_len_w, motif_len_g, burnin, N)
 }
 \arguments{
 \item{motif_len_w}{The length of the first binding motif.}
 
 \item{motif_len_g}{The length of the second binding motif.}
+
+\item{burnin}{The number of burn-in.}
 
 \item{N}{The number of sampling iterations.}
 }
