@@ -18,7 +18,7 @@
 #'
 
 A_samp_fun = function(R,W_samp,G_samp,B_samp,motif_len_w,motif_len_g,dict,theta_0_samp,theta_samp,theta_til_samp){
-  A_samp_unobs = rep(NA, motif_len_w)
+  A_samp_unobs = rep(NA, total_n)
   for (rep_i in 1:total_n) {
     # rep_i=1
     Ri = R[rep_i]
