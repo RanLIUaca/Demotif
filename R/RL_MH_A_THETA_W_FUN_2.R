@@ -22,7 +22,7 @@ pi_A_theta_fun = function(R,W,G_samp,A,B_samp,dict,theta_0_samp,theta,theta_til_
     res = res +log(ddirichlet(theta[,rep_j], rep(pri_alw,len_dict)))
   }
   for (rep_i in UW_loc) {
-    res = res + log(dbinom(W[rep_i], size = 1, prob = pri_Wp))
+    res = res + log(dbinom(W[rep_i], size = 1, prob = pri_wp))
   }
   return(res)
 }
