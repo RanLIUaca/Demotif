@@ -21,7 +21,7 @@
 #'   - a plot for the logos before and after a jump.
 #'    @export
 #' 
-res_ana = function(motif_len_w,motif_len_g,N){
+res_ana = function(motif_len_w,motif_len_g,burnin, N){
   # UG_loc = which(is.na(G_obs))
   # UW_loc = which(is.na(W_obs))
   
@@ -107,13 +107,14 @@ res_ana = function(motif_len_w,motif_len_g,N){
   #########################
   ### parameters logo ####
   ##########################
-  est_theta_0 = Theta_0[,which.max(Logllk)]
-  est_theta = Theta[[which.max(Logllk)]]; est_theta = as.matrix(est_theta); row.names(est_theta) = dict
+  max_loc = burnin  + which.max(Logllk[(burnin+1):N])
+  est_theta_0 = Theta_0[,max_loc]
+  est_theta = Theta[[max_loc]]; est_theta = as.matrix(est_theta); row.names(est_theta) = dict
   plot_list[[2]] = ggseqlogo(est_theta) +
     theme(legend.position = "none", axis.text = element_text(size = 11),plot.title = element_text(size = 11))+
     labs(title = "First Motif Estimation") 
 
-  est_theta_til = Theta_til[[which.max(Logllk)]]; est_theta_til = as.matrix(est_theta_til); row.names(est_theta_til) = dict
+  est_theta_til = Theta_til[[max_loc]]; est_theta_til = as.matrix(est_theta_til); row.names(est_theta_til) = dict
   plot_list[[3]] = ggseqlogo(est_theta_til)+
     theme(legend.position = "none", axis.text = element_text(size = 11),plot.title = element_text(size = 11))+
     labs(title = "Second Motif Estimation") 
@@ -152,7 +153,7 @@ res_ana = function(motif_len_w,motif_len_g,N){
   JUMP_plot = NA
   if(sum(num_change[1,])!=0) {
     jump.plot = do.call(ggarrange, c(jump_plot, ncol = 1, common.legend = FALSE))
-    JUMP_plot = annotate_figure(jump.plot,top = text_grob(paste0('Case is (',Motif_len_w[rep_len_w],',',Motif_len_g[rep_len_g],')' ),face='bold',size = 11,hjust = 0.5))
+    JUMP_plot = annotate_figure(jump.plot,top = text_grob(paste0('Case is (',motif_len_w,',',motif_len_g,')' ),face='bold',size = 11,hjust = 0.5))
   }
 return(list(Theta_0,Theta,Theta_til,W_samp,G_samp,A_samp,B_samp,Logllk,est_theta_0, est_theta, est_theta_til,num_change,All_plot,JUMP_plot))
 }
