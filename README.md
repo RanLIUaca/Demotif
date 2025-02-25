@@ -94,7 +94,7 @@ names(Data_row_list) = c("Data", "total_n", "dict", "len_dict", "Len_seq", "UW_l
 list2env(Data_row_list, envir = .GlobalEnv)
 
 ##### Obtain the all samples #####
-# Generate samples using the `de_motif` function (store them in the './result/')
+# Generate samples using the `de_motif` function (store them in the './result/temp_data/')
 # Parameters:
 # - Data: Processed data
 # - motif_len_w: Length of the first motif
@@ -106,10 +106,11 @@ list2env(Data_row_list, envir = .GlobalEnv)
 de_motif(Data,motif_len_w,motif_len_g,10,10,20,50)
 
 #### Present all results #####
-# Analyze the results in the './result/' using the `res_ana` function
+# Analyze the results in the './result/temp_data/' using the `res_ana` function
 # Parameters:
 # - motif_len_w: Length of the first motif
 # - motif_len_g: Length of the second motif
+# - 20: the number of burn-in
 # - 50: the number of iterations
 # Return: 
 #  Res: A list containing:
@@ -123,7 +124,28 @@ de_motif(Data,motif_len_w,motif_len_g,10,10,20,50)
 # - The number of jumps for both motifs,
 # - a plot for the curve of the loglikelihood, the estimated theta logo and the estimated tilde{theta} logo,
 # - a plot for the logos before and after a jump.
-Res = res_ana(motif_len_w, motif_len_g, 50)
+Res = res_ana(motif_len_w, motif_len_g, 20, 50)
+
+#### Predict motif locations #####
+# Perform predictive residue analysis using the `pred_res_ana` function.
+# This function estimates motif locations and computes posterior probabilities.
+#
+# Parameters:
+# - Data_row_list$Data: A list containing observed sequence data and related information.
+# - Res[[9]]: Estimation for `theta_0` (background probabilities).
+# - Res[[10]]: Estimation for `theta` (the first binding motif probabilities).
+# - Res[[11]]: Estimation for `tilde{theta}` (the second binding motif probabilities).
+# - motif_len_w: Length of the first motif (W).
+# - motif_len_g: Length of the second motif (G).
+# - 20: The number of burn-in iterations for MCMC sampling.
+# - 50: The total number of MCMC iterations.
+#
+# Return:
+# - pred_frame: A data frame containing:
+#   - Estimated values for W and G,
+#   - Posterior probabilities for motif presence,
+#   - The most likely motif positions based on log-likelihood.
+pred_frame = pred_res_ana(Data_row_list$Data, Res[[9]], Res[[10]], Res[[11]], motif_len_w, motif_len_g, 20, 50)
 ```
 
 ## Reference
