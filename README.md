@@ -66,7 +66,7 @@ For `res_ana` function, the output is
 
 ## Example
 This is a toy example for decomposing hierarchical motifs. We shall use the data contained in the package.
-```
+```R
 library(demotif)
 # Set the proportion of missing data to 50%
 rate_missg = 0.5
