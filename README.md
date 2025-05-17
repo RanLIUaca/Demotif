@@ -149,7 +149,7 @@ pred_frame = pred_res_ana(Data_row_list$Data, Res[[9]], Res[[10]], Res[[11]], mo
 ```
 
 ## Reference
--   Xinyi, T. et al. (2025+), “De-motif Sampling: An Approach to Decompose Hierarchical Motifs with Applications in T Cell Recognition,” Working Paper.
+-   Tang, X., & Liu, R. (2025). De-motif sampling: an approach to decompose hierarchical motifs with applications in T cell recognition. Briefings in Bioinformatics, 26(3), bbaf221. https://doi.org/10.1093/bib/bbaf221
 
 ## Contact
 Xinyi Tang: xytang@link.cuhk.edu.hk; Ran Liu: ranliu@bnu.edu.cn
